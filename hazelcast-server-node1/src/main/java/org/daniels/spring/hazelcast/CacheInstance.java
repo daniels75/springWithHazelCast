@@ -12,27 +12,19 @@ import org.springframework.stereotype.Component;
 public class CacheInstance {
 
     public static final String CARS = "cars";
-    private final HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(createConfig());
+    private final HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
 
-    public String put(String key, String carName){
-        /*
-        IMap<String, String> map = hazelCast.getMap(CARS);
-        String value = map.putIfAbsent(key, carName);
-        log.info("Caches put - client: {}, number: {}, car: {}, value: {}",
-                hazelCast, key, carName, value);
+    public String put(String key, String value){
+        hazelcastInstance.getMap(CARS).putIfAbsent(key, value);
+        log.info("Caches put - instance: {}, key: {}, value: {}", hazelcastInstance, key, value);
         return value;
-        */
-        return carName;
+
     }
 
     public String get(String key){
-        /*
-        IMap<String, String> map = hazelCast.getMap(CARS);
-        String value = map.get(key);
-        log.info("Cache get - client: {}, key: {},  value: {}", hazelCast, key, value);
-        return value;
-        */
-        return key;
+        Object value = hazelcastInstance.getMap(CARS).get(key);
+        log.info("Caches get - instance: {}, key: {}, value: {}", hazelcastInstance, key, value);
+        return value != null ? value.toString() : "unknown";
     }
 
     public Config createConfig() {

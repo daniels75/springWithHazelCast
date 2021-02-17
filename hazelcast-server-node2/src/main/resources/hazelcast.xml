@@ -14,7 +14,7 @@
             <multicast enabled="false">
             </multicast>
             <tcp-ip enabled="true">
-                <member>localhost</member>
+                <member>DESKTOP-OFLUMC8</member>
             </tcp-ip>
         </join>
     </network>
