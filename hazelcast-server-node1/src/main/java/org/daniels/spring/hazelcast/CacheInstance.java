@@ -12,11 +12,7 @@ import org.springframework.stereotype.Component;
 public class CacheInstance {
 
     public static final String CARS = "cars";
-    private final HazelcastInstance hazelcastInstance;
-
-    public CacheInstance() {
-        hazelcastInstance = Hazelcast.newHazelcastInstance(createConfig());;
-    }
+    private final HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(createConfig());
 
     public String put(String key, String carName){
         /*

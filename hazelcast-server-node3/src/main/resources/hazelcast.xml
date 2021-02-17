@@ -11,9 +11,10 @@
     <network>
         <port port-count="20">5701</port>
         <join>
-            <multicast enabled="false"/>
+            <multicast enabled="false">
+            </multicast>
             <tcp-ip enabled="true">
-                <member>127.0.0.1</member>
+                <member>localhost</member>
             </tcp-ip>
         </join>
     </network>

@@ -5,7 +5,6 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.IMap;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -39,10 +38,6 @@ public class CacheInstance {
 
     public Config createConfig() {
         Config config = new Config();
-        config.getNetworkConfig()
-                .setPort(5701)
-                .setPortCount(20)
-                .setPortAutoIncrement(true);
         config.addMapConfig(mapConfig());
         return config;
     }
