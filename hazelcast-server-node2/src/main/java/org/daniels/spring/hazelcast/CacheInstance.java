@@ -1,6 +1,5 @@
 package org.daniels.spring.hazelcast;
 
-import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
@@ -13,27 +12,19 @@ import org.springframework.stereotype.Component;
 public class CacheInstance {
 
     public static final String CARS = "cars";
-    //private final HazelcastInstance nodeServer = Hazelcast.newHazelcastInstance();
-    //private final HazelcastInstance nodeServer = HazelcastClient.newHazelcastClient();
-    public String put(String key, String carName){
-        /*
-        IMap<String, String> map = nodeServer.getMap(CARS);
-        String value = map.putIfAbsent(key, carName);
-        log.info("Caches put - client: {}, number: {}, car: {}, value: {}",
-                nodeServer, key, carName, value);
+    private final HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(createConfig());
+
+    public String put(String key, String value){
+        hazelcastInstance.getMap(CARS).putIfAbsent(key, value);
+        log.info("Caches put - instance: {}, key: {}, value: {}", hazelcastInstance, key, value);
         return value;
-        */
-        return null;
+
     }
 
     public String get(String key){
-        /*
-        IMap<String, String> map = nodeServer.getMap(CARS);
-        String value = map.get(key);
-        log.info("Cache get - client: {}, key: {},  value: {}", nodeServer, key, value);
-        return value;
-        */
-        return null;
+        Object value = hazelcastInstance.getMap(CARS).get(key);
+        log.info("Caches get - instance: {}, key: {}, value: {}", hazelcastInstance, key, value);
+        return value != null ? value.toString() : "unknown";
     }
 
     public Config createConfig() {

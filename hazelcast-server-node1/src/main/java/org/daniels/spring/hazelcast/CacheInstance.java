@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class CacheInstance {
 
     public static final String CARS = "cars";
-    private final HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
+    private final HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(createConfig());
 
     public String put(String key, String value){
         hazelcastInstance.getMap(CARS).putIfAbsent(key, value);
