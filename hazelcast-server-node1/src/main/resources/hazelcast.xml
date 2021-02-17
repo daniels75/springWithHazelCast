@@ -3,7 +3,10 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.hazelcast.com/schema/config
                                http://www.hazelcast.com/schema/config/hazelcast-config-4.0.xsd">
-    <management-center>http://localhost:8099/mancenter</management-center>
+    <!-- managment version - management-center-3.9.1 -->
+    <management-center enabled="true">
+        http://localhost:8080/mancenter
+    </management-center>
     <properties>
         <property name="hazelcast.discovery.enabled">false</property>
         <property name="connection-timeout-seconds">60</property>
